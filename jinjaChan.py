@@ -11,7 +11,7 @@ templateLoader = jinja2.FileSystemLoader(os.getcwd())
 templateEnv = jinja2.Environment(loader=templateLoader)
 TEMPLATE_FILE = "template.html"
 template = templateEnv.get_template(TEMPLATE_FILE)
-outputText = template.render(posts=data)
+outputText = template.render(posts=data['posts'])
 
 minified_html = html_minify(outputText)
 

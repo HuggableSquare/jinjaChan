@@ -11,8 +11,8 @@
   <div class="board">
     <div id="boardNavDesktop" class="desktop"><span id="navtopright">[<a href="javascript:void(0);" id="settingsWindowLink">Settings</a>]</span></div>
     <div id="boardNavMobile" class="mobile"> <div class="boardSelect"> <strong>Board</strong> <select id="boardSelectMobile"></select> </div> <div class="pageJump"> <a href="#bottom">▼</a> <a href="javascript:void(0);" id="settingsWindowLinkMobile">Settings</a> <a href="http://www.4chan.org" target="_top">Home</a> </div></div>
-    <div class="thread" id="t{{ post.no }}">
-      {% for post in posts.posts %}
+    <div class="thread" id="t{{ posts[0].no }}">
+      {% for post in posts %}
         {% if loop.index is equalto 1 %}
           <div class="postContainer opContainer" id="pc{{ post.no }}">
             <div id="p{{ post.no }}" class="post op">
