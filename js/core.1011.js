@@ -98,20 +98,4 @@ function contentLoaded() {
   Tip.init();
 }
 
-function loadExtraScripts() {
-  var el;
-  
-  if (window.FC) {
-    el = document.createElement('script');
-    el.type = 'text/javascript';
-    el.src = '/js/extension.1071.js';
-    document.head.appendChild(el);
-  }
-  else {
-    document.write('<script type="text/javascript" src="/js/extension.1071.js"></script>');
-  }
-  
-  return true;
-}
-
 document.addEventListener('DOMContentLoaded', contentLoaded, true);
