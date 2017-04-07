@@ -5,9 +5,9 @@
   <link rel="stylesheet" type="text/css" href="/css/yotsubluenew.614.css">
   <!--script type="text/javascript" data-cfasync="false" src="js/core.js"></script-->
   <script type="text/javascript" data-cfasync="false" src="/js/extension.1014.js"></script>
-  <link rel="shortcut icon" href="//s.4cdn.org/image/favicon-ws-deadthread.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/image/favicon-ws-deadthread.ico" type="image/x-icon">
 </head>
-<body>
+<body class="tomorrow ws">
 <div id="delform">
 <div class="board">
 <div id="boardNavDesktop" class="desktop"><span id="navtopright">[<a href="javascript:void(0);" id="settingsWindowLink">Settings</a>]</span></div>
@@ -25,11 +25,11 @@
       </div>
       <div class="postInfo desktop" id="pi{{ post.no }}">
         <input type="checkbox" name="" value="delete">
-        <span class="subject"></span>
+        <span class="subject">{% if post.sub is defined %}{{ post.sub }}{% endif %}</span>
         <span class="nameBlock"><span class="name">{{ post.name }}</span>
         <span class="dateTime" data-utc="{{ post.time }}">{{ post.now }}</span>
         <span class="postNum desktop"><a href="#p{{ post.no }}" title="Link to this post">No.</a>
-        <a href="" title="Reply to this post">{{ post.no }}</a></span></div>    
+        <a href="" title="Reply to this post">{{ post.no }}</a></span></div>
         <blockquote class="postMessage" id="m{{ post.no }}">{{ post.com }}</blockquote>
       </div>
     </div>
