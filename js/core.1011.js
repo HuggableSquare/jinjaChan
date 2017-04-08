@@ -94,8 +94,162 @@ var Tip = {
   }
 }
 
+function cloneTopNav() {
+  var navT, navB, ref, el;
+
+  navT = document.getElementById('boardNavDesktop');
+
+  if (!navT) {
+    return;
+  }
+
+  ref = document.getElementById('absbot');
+
+  navB = navT.cloneNode(true);
+  navB.id = navB.id + 'Foot';
+
+  if (el = navB.querySelector('#navtopright')) {
+    el.id = 'navbotright';
+  }
+
+  if (el = navB.querySelector('#settingsWindowLink')) {
+    el.id = el.id + 'Bot';
+  }
+
+  document.body.insertBefore(navB, ref);
+}
+
+function onStyleSheetChange(e) {
+  setActiveStyleSheet(this.value);
+}
+
+var activeStyleSheet;
+
+function initStyleSheet() {
+  var i, rem, link, len;
+
+  // hack for people on old things
+  if (typeof style_group != "undefined" && style_group) {
+    var cookie = readCookie(style_group);
+    activeStyleSheet = cookie ? cookie : getPreferredStyleSheet();
+  }
+
+  switch(activeStyleSheet) {
+  case "Yotsuba B":
+    setActiveStyleSheet("Yotsuba B New", true);
+    break;
+
+  case "Yotsuba":
+    setActiveStyleSheet("Yotsuba New", true);
+    break;
+
+  case "Burichan":
+    setActiveStyleSheet("Burichan New", true);
+    break;
+
+  case "Futaba":
+    setActiveStyleSheet("Futaba New", true);
+    break;
+
+  default:
+    setActiveStyleSheet(activeStyleSheet, true);
+    break;
+  }
+}
+
+function setActiveStyleSheet(title, init) {
+  var a, link, href, i, nodes;
+
+  if( document.querySelectorAll('link[title]').length == 1 ) {
+    return;
+  }
+
+  href = '';
+
+  nodes = document.getElementsByTagName('link');
+
+  for (i = 0; a = nodes[i]; i++) {
+    if (a.getAttribute("title") == "switch") {
+      link = a;
+    }
+
+    if (a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title")) {
+      if (a.getAttribute("title") == title) {
+        href = a.href;
+      }
+    }
+  }
+
+  link && link.setAttribute("href", href);
+
+  if (!init) {
+		document.cookie = style_group + "=" + title;
+  }
+}
+
+function getActiveStyleSheet() {
+  var i, a;
+  var link;
+
+  if( document.querySelectorAll('link[title]').length == 1 ) {
+    return 'Yotsuba P';
+  }
+
+  for (i = 0; (a = document.getElementsByTagName("link")[i]); i++) {
+    if (a.getAttribute("title") == "switch")
+               link = a;
+    else if (a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title") && a.href==link.href) return a.getAttribute("title");
+  }
+  return null;
+}
+
+function getPreferredStyleSheet() {
+  return (style_group == "ws_style") ? "Yotsuba B New" : "Yotsuba New";
+}
+
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) {
+      return decodeURIComponent(c.substring(nameEQ.length, c.length));
+    }
+  }
+  return '';
+}
+
 function contentLoaded() {
+	document.removeEventListener('DOMContentLoaded', contentLoaded, true);
+
+	cloneTopNav()
+
+	if (el = document.getElementById('styleSelector')) {
+    el.addEventListener('change', onStyleSheetChange, false);
+  }
+
   Tip.init();
 }
 
+function init() {
+  /*if (window.math_tags && pageHasMath()) {
+    loadMathJax();
+  }*/
+
+  if( document.getElementById('styleSelector') ) {
+    styleSelect = document.getElementById('styleSelector');
+    len = styleSelect.options.length;
+    for ( var i = 0; i < len; i++) {
+      if (styleSelect.options[i].value == activeStyleSheet) {
+        styleSelect.selectedIndex = i;
+        continue;
+      }
+    }
+  }
+}
+
+window.onload = init;
 document.addEventListener('DOMContentLoaded', contentLoaded, true);
+
+initStyleSheet();

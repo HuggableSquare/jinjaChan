@@ -3628,7 +3628,7 @@ Main.run = function() {
   document.addEventListener('click', Main.onclick, false);
   
   $.id('settingsWindowLink').addEventListener('click', SettingsMenu.toggle, false);
-  //$.id('settingsWindowLinkBot').addEventListener('click', SettingsMenu.toggle, false);
+  $.id('settingsWindowLinkBot').addEventListener('click', SettingsMenu.toggle, false);
   $.id('settingsWindowLinkMobile').addEventListener('click', SettingsMenu.toggle, false);
   
   Main.hasMobileLayout = Main.checkMobileLayout();

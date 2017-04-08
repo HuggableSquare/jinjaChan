@@ -2,12 +2,18 @@
 <head>
   <meta charset="utf-8">
   <script type="text/javascript">var style_group = "ws_style";</script>
-  <link rel="stylesheet" type="text/css" href="/css/yotsubluenew.614.css">
+  <link rel="stylesheet" title="switch" href="/css/yotsubluenew.669.css">
+  <link rel="alternate stylesheet" style="text/css" href="/css/yotsubanew.669.css" title="Yotsuba New">
+  <link rel="alternate stylesheet" style="text/css" href="/css/yotsubluenew.669.css" title="Yotsuba B New">
+  <link rel="alternate stylesheet" style="text/css" href="/css/futabanew.669.css" title="Futaba New">
+  <link rel="alternate stylesheet" style="text/css" href="/css/burichannew.669.css" title="Burichan New">
+  <link rel="alternate stylesheet" style="text/css" href="/css/photon.669.css" title="Photon">
+  <link rel="alternate stylesheet" style="text/css" href="/css/tomorrow.669.css" title="Tomorrow">
   <script type="text/javascript" data-cfasync="false" src="/js/core.1011.js"></script>
   <script type="text/javascript" data-cfasync="false" src="/js/extension.1071.js"></script>
   <link rel="shortcut icon" href="/image/favicon-ws-deadthread.ico" type="image/x-icon">
 </head>
-<body class="tomorrow ws">
+<body>
   <div class="board">
     <div id="boardNavDesktop" class="desktop"><span id="navtopright">[<a href="javascript:void(0);" id="settingsWindowLink">Settings</a>]</span></div>
     <div id="boardNavMobile" class="mobile"> <div class="boardSelect"> <strong>Board</strong> <select id="boardSelectMobile"></select> </div> <div class="pageJump"> <a href="#bottom">▼</a> <a href="javascript:void(0);" id="settingsWindowLinkMobile">Settings</a> <a href="http://www.4chan.org" target="_top">Home</a> </div></div>
@@ -63,4 +69,17 @@
       {% endfor %}
     </div>
   </div>
+  <div class="bottomCtrl desktop">
+    <span class="stylechanger">
+      Style:&nbsp;<select id="styleSelector">
+        <option value="Yotsuba New">Yotsuba</option>
+        <option value="Yotsuba B New">Yotsuba B</option>
+        <option value="Futaba New">Futaba</option>
+        <option value="Burichan New">Burichan</option>
+        <option value="Tomorrow">Tomorrow</option>
+        <option value="Photon">Photon</option>
+      </select>
+    </span>
+  </div>
+  <div id="absbot"></div>
 </body>
