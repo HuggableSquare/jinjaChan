@@ -9,6 +9,23 @@
   <link rel="alternate stylesheet" style="text/css" href="/css/burichannew.669.css" title="Burichan New">
   <link rel="alternate stylesheet" style="text/css" href="/css/photon.669.css" title="Photon">
   <link rel="alternate stylesheet" style="text/css" href="/css/tomorrow.669.css" title="Tomorrow">
+  <title>
+    {% if board is defined %}
+      /{{ board.board }}/ -
+    {% endif %}
+
+    {% if posts[0].sub is defined %}
+      {{ posts[0].sub|truncate(50, true, '') }}
+    {% else %}
+      {{ posts[0].com|truncate(50, true, '') }}
+    {% endif %}
+
+    {% if board is defined %}
+      - {{ board.title }}
+    {% endif %}
+
+    - 4chan
+  </title>
   <script type="text/javascript" data-cfasync="false" src="/js/core.1011.js"></script>
   <script type="text/javascript" data-cfasync="false" src="/js/extension.1071.js"></script>
   <link rel="shortcut icon" href="/image/favicon-ws-deadthread.ico" type="image/x-icon">

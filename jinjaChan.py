@@ -1,21 +1,33 @@
-import sys
 import json
 import jinja2
 import os
 from htmlmin.minify import html_minify
+import argparse
 
-json_data = open(sys.argv[1])
-data = json.load(json_data)
+parser = argparse.ArgumentParser()
+parser.add_argument('input', help='json input file')
+parser.add_argument('output', help='html output file')
+parser.add_argument('-b', '--board', help='defining the board makes title more accurate')
+args = parser.parse_args()
+
+# open thread json and add it to the render arguments
+renderArgs = dict(posts=json.load(open(args.input))['posts'])
+
+if args.board:
+  boards = json.load(open('boards.json'))['boards']
+  # filter the boards json to find the correct board
+  renderArgs['board'] = [b for b in boards if b['board'] == args.board][0]
 
 templateLoader = jinja2.FileSystemLoader(os.getcwd())
 templateEnv = jinja2.Environment(loader=templateLoader)
-TEMPLATE_FILE = "template.html"
-template = templateEnv.get_template(TEMPLATE_FILE)
-outputText = template.render(posts=data['posts'])
+template = templateEnv.get_template('template.html')
 
-minified_html = html_minify(outputText)
+outputText = template.render(renderArgs)
+minified = html_minify(outputText)
+# python 2 encoding fix
+if not isinstance(minified, str):
+  minified = minified.encode('utf-8')
 
-outputfile = open(sys.argv[2], "w")
-outputfile.write(minified_html.encode('utf-8'))
-outputfile.close()
-json_data.close()
+outputFile = open(args.output, 'w')
+outputFile.write(minified)
+outputFile.close()
