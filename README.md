@@ -24,4 +24,3 @@ notes
 - links get matched based on board/thread/tid
 - filesizes read differently than on 4chan because of built in jinja filter #wontfix
 - html doesn't get a title tag yet
-- no way to change css yet
