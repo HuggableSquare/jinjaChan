@@ -23,7 +23,7 @@
           <div class="postContainer opContainer" id="pc{{ post.no }}">
             <div id="p{{ post.no }}" class="post op">
               <div class="file" id="f{{ post.no }}">
-                <div class="fileText" id="fT{{ post.no }}">File: <a href="images/{{ post.tim }}{{ post.ext }}" target="_blank">{{ post.filename|truncate(30, true, '(...)') }}{{ post.ext }}</a> ({{ post.fsize|filesizeformat }}, {{ post.h }}x{{ post.w }})</div>
+                <div class="fileText" id="fT{{ post.no }}">File: <a title="{{ post.filename }}{{ post.ext }}" href="images/{{ post.tim }}{{ post.ext }}" target="_blank">{{ post.filename|truncate(30, true, '(...)') }}{{ post.ext }}</a> ({{ post.fsize|filesizeformat }}, {{ post.h }}x{{ post.w }})</div>
                 <a class="fileThumb" href="images/{{ post.tim }}{{ post.ext }}" target="_blank">
                   <img src="thumbs/{{ post.tim }}s.jpg" alt="{{ post.fsize|filesizeformat }}" data-md5="{{ post.md5 }}" style="height: {{ post.tn_h }}px; width: {{ post.tn_w }}px;">
                 </a>
@@ -56,7 +56,7 @@
               </div>
               {% if post.filename is defined %}
                 <div class="file" id="f{{ post.no }}">
-                  <div class="fileText" id="fT{{ post.no }}">File: <a href="images/{{ post.tim }}{{ post.ext }}" target="_blank">{{ post.filename|truncate(30, true, '(...)') }}{{ post.ext }}</a> ({{ post.fsize|filesizeformat }}, {{ post.h }}x{{ post.w }})</div>
+                  <div class="fileText" id="fT{{ post.no }}">File: <a title="{{ post.filename }}{{ post.ext }}" href="images/{{ post.tim }}{{ post.ext }}" target="_blank">{{ post.filename|truncate(30, true, '(...)') }}{{ post.ext }}</a> ({{ post.fsize|filesizeformat }}, {{ post.h }}x{{ post.w }})</div>
                   <a class="fileThumb" href="images/{{ post.tim }}{{ post.ext }}" target="_blank">
                     <img src="thumbs/{{ post.tim }}s.jpg" alt="{{ post.fsize|filesizeformat }}" data-md5="{{ post.md5 }}" style="height: {{ post.tn_h }}px; width: {{ post.tn_w }}px;">
                   </a>
