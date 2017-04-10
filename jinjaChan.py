@@ -3,6 +3,7 @@ import jinja2
 import os
 from htmlmin.minify import html_minify
 import argparse
+import requests
 
 parser = argparse.ArgumentParser()
 parser.add_argument('input', help='json input file')
@@ -14,7 +15,7 @@ args = parser.parse_args()
 renderArgs = dict(posts=json.load(open(args.input))['posts'])
 
 if args.board:
-  boards = json.load(open('boards.json'))['boards']
+  boards = requests.get('https://a.4cdn.org/boards.json').json()['boards']
   # filter the boards json to find the correct board
   renderArgs['board'] = [b for b in boards if b['board'] == args.board][0]
 

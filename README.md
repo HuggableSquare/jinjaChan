@@ -7,6 +7,7 @@ dependencies
 ----
 - [jinja2](http://jinja.pocoo.org/)
 - [django-htmlmin](https://github.com/cobrateam/django-htmlmin)
+- [requests](https://github.com/kennethreitz/requests)
 
 usage
 ----
