@@ -12,7 +12,8 @@ parser.add_argument('-b', '--board', help='defining the board makes title more a
 args = parser.parse_args()
 
 # open thread json and add it to the render arguments
-renderArgs = dict(posts=json.load(open(args.input))['posts'])
+with open(args.input) as input:
+  renderArgs = dict(posts=json.load(input)['posts'])
 
 if args.board:
   boards = requests.get('https://a.4cdn.org/boards.json').json()['boards']
@@ -29,6 +30,5 @@ minified = html_minify(outputText)
 if not isinstance(minified, str):
   minified = minified.encode('utf-8')
 
-outputFile = open(args.output, 'w')
-outputFile.write(minified)
-outputFile.close()
+with open(args.output, 'w') as output:
+  output.write(minified)
